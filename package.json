@@ -1,0 +1,32 @@
+{
+  "name": "repositorio-musicas",
+  "version": "1.0.0",
+  "description": "Sistema de gerenciamento de músicas, bandas e produtoras com TypeScript e PostgreSQL",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "dev:reload": "ts-node-dev --respawn src/index.ts"
+  },
+  "keywords": [
+    "typescript",
+    "postgresql",
+    "crud",
+    "mvc"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.16.3",
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.130",
+    "@types/pg": "^8.15.6",
+    "@types/readline-sync": "^1.4.8",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  }
+}
