@@ -1,10 +1,18 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const readline_sync_1 = __importDefault(require("readline-sync"));
 const ProdutoraController_1 = require("./Controller/ProdutoraController");
 const BandaController_1 = require("./Controller/BandaController");
 const MusicaController_1 = require("./Controller/MusicaController");
 const db_1 = require("./db");
-// Menu de opções
+// Importar menus diretamente da pasta views (estão fora de src)
+const menuProdutora_1 = require("./views/menuProdutora");
+const menuBanda_1 = require("./views/menuBanda");
+const menuMusica_1 = require("./views/menuMusica");
+// Função que exibe o menu principal
 function exibirMenu() {
     console.log('\n╔══════════════════════════════════════╗');
     console.log('║   SISTEMA DE GERENCIAMENTO MUSICAL   ║');
@@ -15,44 +23,7 @@ function exibirMenu() {
     console.log('4️⃣  - Exemplo Completo');
     console.log('0️⃣  - Sair\n');
 }
-async function menuProdutora() {
-    const controller = new ProdutoraController_1.ProdutoraController();
-    console.log('\n=== GERENCIAR PRODUTORAS ===');
-    console.log('1 - Criar Produtora');
-    console.log('2 - Listar Todas');
-    console.log('3 - Buscar por ID');
-    console.log('4 - Atualizar');
-    console.log('5 - Deletar');
-    console.log('0 - Voltar');
-    // Exemplo de uso:
-    await controller.listar();
-}
-async function menuBanda() {
-    const controller = new BandaController_1.BandaController();
-    console.log('\n=== GERENCIAR BANDAS ===');
-    console.log('1 - Criar Banda');
-    console.log('2 - Listar Todas');
-    console.log('3 - Buscar por ID');
-    console.log('4 - Atualizar');
-    console.log('5 - Deletar');
-    console.log('0 - Voltar');
-    // Exemplo de uso:
-    await controller.listar();
-}
-async function menuMusica() {
-    const controller = new MusicaController_1.MusicaController();
-    console.log('\n=== GERENCIAR MÚSICAS ===');
-    console.log('1 - Criar Música');
-    console.log('2 - Listar Todas');
-    console.log('3 - Buscar por ID');
-    console.log('4 - Atualizar');
-    console.log('5 - Deletar');
-    console.log('6 - Vincular com Banda');
-    console.log('7 - Vincular com Produtora');
-    console.log('0 - Voltar');
-    // Exemplo de uso:
-    await controller.listar();
-}
+// Exemplo completo (executa uma sequência de operações para demonstração)
 async function exemploCompleto() {
     console.log('\n╔═══════════════════════════════════════╗');
     console.log('║        EXECUTANDO EXEMPLO COMPLETO        ║');
@@ -90,32 +61,40 @@ async function exemploCompleto() {
         console.error('\n❌ Erro ao executar exemplo:', error);
     }
 }
-// Função principal
 async function main() {
     try {
-        console.log('\n🎵 Bem-vindo ao Sistema de Gerenciamento Musical!\n');
-        // Para executar o exemplo completo, descomente a linha abaixo:
-        exibirMenu();
-        await exemploCompleto();
-        // Ou use o menu interativo:
-        await menuProdutora();
-        await menuBanda();
-        await menuMusica();
+        console.log("\n🎵 Bem-vindo ao Sistema de Gerenciamento Musical!\n");
+        let opcao;
+        do {
+            exibirMenu();
+            opcao = readline_sync_1.default.question("Escolha uma opção: ");
+            switch (opcao) {
+                case "1":
+                    await (0, menuProdutora_1.menuProdutora)();
+                    break;
+                case "2":
+                    await (0, menuBanda_1.menuBanda)();
+                    break;
+                case "3":
+                    await (0, menuMusica_1.menuMusica)();
+                    break;
+                case "4":
+                    await exemploCompleto();
+                    break;
+                case "0":
+                    console.log("👋 Saindo do sistema...");
+                    break;
+                default:
+                    console.log("❌ Opção inválida!");
+            }
+        } while (opcao !== "0");
     }
     catch (error) {
-        console.error('❌ Erro na aplicação:', error);
+        console.error("❌ Erro na aplicação:", error);
     }
     finally {
-        // Fecha o pool de conexões
-        try {
-            await db_1.pool.end();
-        }
-        catch (err) {
-            console.warn('⚠️ Erro ao encerrar pool:', err);
-        }
-        console.log('\n👋 Aplicação finalizada.');
+        await db_1.pool.end();
+        console.log("\n✅ Conexão com banco encerrada.");
     }
 }
-// Executa a aplicação
 main();
-//# sourceMappingURL=index.js.map

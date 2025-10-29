@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MusicaController = void 0;
 const MusicaService_1 = require("../Service/MusicaService");
 class MusicaController {
+    service;
     constructor() {
         this.service = new MusicaService_1.MusicaService();
     }
@@ -164,4 +165,3 @@ class MusicaController {
     }
 }
 exports.MusicaController = MusicaController;
-//# sourceMappingURL=MusicaController.js.map

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BandaController = void 0;
 const BandaService_1 = require("../Service/BandaService");
 class BandaController {
+    service;
     constructor() {
         this.service = new BandaService_1.BandaService();
     }
@@ -127,4 +128,3 @@ class BandaController {
     }
 }
 exports.BandaController = BandaController;
-//# sourceMappingURL=BandaController.js.map

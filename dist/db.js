@@ -29,4 +29,3 @@ exports.pool.on('error', (err) => {
     console.error('❌ Erro inesperado no pool de conexões:', err);
 });
 exports.default = exports.pool;
-//# sourceMappingURL=db.js.map

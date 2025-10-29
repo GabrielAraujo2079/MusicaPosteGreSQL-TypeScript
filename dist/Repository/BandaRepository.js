@@ -41,4 +41,3 @@ class BandaRepository {
     }
 }
 exports.BandaRepository = BandaRepository;
-//# sourceMappingURL=BandaRepository.js.map

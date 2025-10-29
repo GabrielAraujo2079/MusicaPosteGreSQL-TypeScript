@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProdutoraController = void 0;
 const ProdutoraService_1 = require("../Service/ProdutoraService");
 class ProdutoraController {
+    service;
     constructor() {
         this.service = new ProdutoraService_1.ProdutoraService();
     }
@@ -79,4 +80,3 @@ class ProdutoraController {
     }
 }
 exports.ProdutoraController = ProdutoraController;
-//# sourceMappingURL=ProdutoraController.js.map

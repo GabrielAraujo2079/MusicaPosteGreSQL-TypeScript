@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MusicaService = void 0;
 const MusicaRepository_1 = require("../Repository/MusicaRepository");
 class MusicaService {
+    repository;
     constructor() {
         this.repository = new MusicaRepository_1.MusicaRepository();
     }
@@ -46,4 +47,3 @@ class MusicaService {
     }
 }
 exports.MusicaService = MusicaService;
-//# sourceMappingURL=MusicaService.js.map
