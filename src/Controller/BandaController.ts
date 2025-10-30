@@ -40,10 +40,12 @@ export class BandaController {
         return;
       }
       const formatado = bandas.map(b => ({
+        ID: b.id_banda,
         Nome: b.nomebanda,
+        'ID Produtora': b.id_produtora,
         Produtora: b.nomeprodutora
       }));
-      console.table(formatado, ['Nome', 'Produtora']);
+      console.table(formatado, ['ID', 'Nome', 'ID Produtora', 'Produtora']);
     } catch (error) {
       console.error('❌ Erro ao listar bandas:', error);
       throw error;

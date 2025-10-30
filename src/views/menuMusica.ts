@@ -21,7 +21,9 @@ export async function menuMusica() {
     switch (opcao) {
       case '1': {
         const nome = readlineSync.question('Digite o nome da música: ');
-        await controller.criar(nome);
+        const idBanda = readlineSync.questionInt('Digite o ID da banda: ');
+        const idProdutora = readlineSync.questionInt('Digite o ID da produtora: ');
+        await controller.criar(nome, idBanda, idProdutora);
         break;
       }
       case '2':

@@ -8,15 +8,23 @@ export class MusicaController {
     this.service = new MusicaService();
   }
 
-  async criar(nomeMusica: string): Promise<void> {
+  async criar(nomeMusica: string, idBanda: number, idProdutora: number): Promise<void> {
     try {
       if (typeof nomeMusica !== 'string' || !nomeMusica.trim()) {
         console.error('❌ Nome da música é obrigatório.');
         return;
       }
+      if (!Number.isInteger(idBanda) || idBanda <= 0) {
+        console.error('❌ ID da banda é obrigatório e deve ser um inteiro positivo.');
+        return;
+      }
+      if (!Number.isInteger(idProdutora) || idProdutora <= 0) {
+        console.error('❌ ID da produtora é obrigatório e deve ser um inteiro positivo.');
+        return;
+      }
 
       const musica: Musica = { nomemusica: nomeMusica.trim() };
-      const resultado = await this.service.createMusica(musica);
+      const resultado = await this.service.createMusica(musica, idBanda, idProdutora);
       console.log('✅ Música criada com sucesso:', resultado);
     } catch (error) {
       console.error('❌ Erro ao criar música:', error);
@@ -32,9 +40,10 @@ export class MusicaController {
         return;
       }
       const formatado = musicas.map(m => ({
+        ID: m.id_musica,
         Nome: m.nomemusica
       }));
-      console.table(formatado, ['Nome']);
+      console.table(formatado, ['ID', 'Nome']);
     } catch (error) {
       console.error('❌ Erro ao listar músicas:', error);
       throw error;

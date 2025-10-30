@@ -26,9 +26,10 @@ class ProdutoraController {
                 return;
             }
             const formatado = produtoras.map(p => ({
+                ID: p.id_produtora,
                 Nome: p.nomeprodutora
             }));
-            console.table(formatado, ['Nome']);
+            console.table(formatado, ['ID', 'Nome']);
         }
         catch (error) {
             console.error('❌ Erro ao listar produtoras:', error);
