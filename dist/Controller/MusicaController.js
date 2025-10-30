@@ -25,12 +25,14 @@ class MusicaController {
     async listar() {
         try {
             const musicas = await this.service.getAllMusicas();
-            console.log('\n📋 Lista de Músicas:');
             if (!Array.isArray(musicas) || musicas.length === 0) {
                 console.log('— Nenhuma música cadastrada —');
                 return;
             }
-            console.table(musicas);
+            const formatado = musicas.map(m => ({
+                Nome: m.nomemusica
+            }));
+            console.table(formatado, ['Nome']);
         }
         catch (error) {
             console.error('❌ Erro ao listar músicas:', error);

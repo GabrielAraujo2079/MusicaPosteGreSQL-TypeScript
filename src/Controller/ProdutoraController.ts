@@ -22,8 +22,14 @@ export class ProdutoraController {
   async listar(): Promise<void> {
     try {
       const produtoras = await this.service.getAllProdutoras();
-      console.log('\n📋 Lista de Produtoras:');
-      console.table(produtoras);
+      if (!produtoras || produtoras.length === 0) {
+        console.log('— Nenhuma produtora cadastrada —');
+        return;
+      }
+      const formatado = produtoras.map(p => ({
+        Nome: p.nomeprodutora
+      }));
+      console.table(formatado, ['Nome']);
     } catch (error) {
       console.error('❌ Erro ao listar produtoras:', error);
       throw error;

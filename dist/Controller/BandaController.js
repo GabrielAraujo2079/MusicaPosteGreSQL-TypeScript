@@ -32,12 +32,15 @@ class BandaController {
     async listar() {
         try {
             const bandas = await this.service.getAllBandas();
-            console.log('\n📋 Lista de Bandas:');
             if (!Array.isArray(bandas) || bandas.length === 0) {
                 console.log('— Nenhuma banda cadastrada —');
                 return;
             }
-            console.table(bandas);
+            const formatado = bandas.map(b => ({
+                Nome: b.nomebanda,
+                Produtora: b.nomeprodutora
+            }));
+            console.table(formatado, ['Nome', 'Produtora']);
         }
         catch (error) {
             console.error('❌ Erro ao listar bandas:', error);
